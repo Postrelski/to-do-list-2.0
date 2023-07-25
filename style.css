@@ -1,0 +1,22 @@
+body{
+    background-color: aquamarine;
+}
+
+header{
+    display: flex;
+}
+
+header i{
+    margin-right: 10px;
+}
+
+.items{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.trash{
+    cursor: pointer;
+}
+
