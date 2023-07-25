@@ -53,7 +53,6 @@ function makeCapital(item) {
     return item.charAt(0).toUpperCase() + item.substring(1);
 }
 
-
 function error () {
     const error = document.createElement("div");
     error.innerHTML = `
@@ -66,41 +65,37 @@ function error () {
     setTimeout( () => {
         error.remove();
     }, 2500);
-
 }
 
-
-function completed() {
+function completed () {
     const completed = document.querySelectorAll('.items');
     completed.forEach( (el, i) => {
         el.addEventListener('click', () => {
             el.classList.toggle('green');
-
-            if (colorPicker[i] == 0){
-                colorPicker[i] = 1;
-            } else {
-                colorPicker[i] = 0;
-            }
-            localStorage.setItem('colors', JSON.stringify(colorPicker));
+            updateColorArray(i);
         })
     })
 }
 
-function dynamicColor () {
+function refreshColors () {
     const completed = document.querySelectorAll('.items');
     for(let i = 0; i < completed.length; i++){
         if(colorArray[i] === 1) {
             completed[i].classList.add('green');
-            if (colorPicker[i] == 0){
-                colorPicker[i] = 1;
-            } else {
-                colorPicker[i] = 0;
-            }
-            localStorage.setItem('colors', JSON.stringify(colorPicker));
+            updateColorArray(i);
         }
     }
 }
 
+function updateColorArray(i) {
+    if (colorPicker[i] == 0){
+        colorPicker[i] = 1;
+    } else {
+        colorPicker[i] = 0;
+    }
+    localStorage.setItem('colors', JSON.stringify(colorPicker));
+}
+
 item.focus();
 display();
-dynamicColor();
+refreshColors();

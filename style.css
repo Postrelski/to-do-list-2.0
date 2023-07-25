@@ -1,5 +1,6 @@
 body{
     background-color: aliceblue;
+    margin-top: 200px;
 }
 
 header{
@@ -80,5 +81,12 @@ form input, button{
 
 #green{
     background-color: lightgreen;
+
+}
+
+footer{
+    text-align: center;
+    margin-top: 500px;
+
 
 }
