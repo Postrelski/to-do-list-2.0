@@ -1,5 +1,6 @@
 const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 const item  = document.querySelector('.input-text')
+const errContainer = document.getElementById("err-container");
 
 console.log(itemsArray);
 
@@ -21,8 +22,10 @@ document.querySelector('.button').addEventListener('click', (e) => {
     e.preventDefault();
     if (!item.value) {
         console.log('must fill space');
+        error();
     } else {
-        createItem(item);
+        const capital = makeCapital(item.value);
+        createItem(capital);
     }
     
 })
@@ -39,10 +42,30 @@ function deleteItem() {
 }
 
 function createItem (item) {
-    itemsArray.push(item.value);
+    itemsArray.push(item);
     localStorage.setItem('items', JSON.stringify(itemsArray));
-    item.value= "";
+    item= "";
     location.reload();
+}
+
+function makeCapital(item) {
+    return item.charAt(0).toUpperCase() + item.substring(1);
+}
+
+
+function error () {
+    const error = document.createElement("div");
+    error.innerHTML = `
+        <div class="warning">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Input cannot be empty!</span>
+        </div>`;
+    errContainer.appendChild(error);
+
+    setTimeout( () => {
+        error.remove();
+    }, 2500);
+
 }
 
 

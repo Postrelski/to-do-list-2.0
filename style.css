@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(241, 241, 241);
+    background-color: aliceblue;
 }
 
 header{
@@ -61,4 +61,15 @@ form input, button{
 .button:hover{
     background-color: black;
     color: wheat;
+}
+
+.error{
+    position: fixed;
+}
+
+.warning{
+    background-color: black;
+    color: red;
+    margin-bottom: 10px;
+    padding: 10px;
 }
