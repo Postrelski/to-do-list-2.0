@@ -1,92 +1,101 @@
-body{
-    background-color: aliceblue;
-    margin-top: 200px;
+body {
+  background-color: aliceblue;
 }
 
-header{
-    display: flex;    
+header {
+  display: flex;
 }
 
-header i{
-    margin-right: 10px;
-    padding: 18px 0;
-    
+header i {
+  margin-right: 10px;
+  padding: 18px 0;
 }
 
-.items{
+.items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trash {
+  cursor: pointer;
+}
+
+main {
+  width: 300px;
+  margin: auto;
+  margin-top: 200px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input,
+button {
+  margin-left: 0;
+  margin-right: 0;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.items {
+  background-color: rgb(255, 255, 255);
+  margin-top: 5%;
+  padding: 15px 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.button {
+  background-color: white;
+  border: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: black;
+  color: wheat;
+}
+
+.error {
+  margin-top: 20px;
+  position: fixed;
+  top: 0;
+}
+
+.warning {
+  background-color: black;
+  color: red;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+#green {
+  background-color: lightgreen;
+}
+
+footer {
+  text-align: center;
+  margin-top: 500px;
+}
+
+
+.inner-items{
     display: flex;
-    justify-content: space-between;
+
 }
 
-.trash{
+.inner-items i{
+    padding-right: 20px;
     cursor: pointer;
-}
-
-main{
-    width: 300px;
-    margin: auto;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-
-}
-
-form input, button{
-    margin-left: 0;
-    margin-right: 0;
-    height: 30px;
-    margin-top: 10px;
-}
-
-.items{
-    background-color: rgb(255, 255, 255);
-    margin-top: 5%;
-    padding: 15px 0;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.title{
-    font-size: 30px;
-}
-
-.button{
-    background-color: white;
-    border: 0;
-    transition: .3s;
-    cursor: pointer;
-}
-
-.button:hover{
-    background-color: black;
-    color: wheat;
-}
-
-.error{
-    position: fixed;
-}
-
-.warning{
-    background-color: black;
-    color: red;
-    margin-bottom: 10px;
-    padding: 10px;
-}
-
-.green{
-    background-color: lightgreen;
-}
-
-#green{
-    background-color: lightgreen;
-
-}
-
-footer{
-    text-align: center;
-    margin-top: 500px;
-
-
 }

@@ -1,23 +1,28 @@
 const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
-const colorPicker = Array(itemsArray.length).fill(0);
 const colorArray = localStorage.getItem('colors') ? JSON.parse(localStorage.getItem('colors')) : [];
 const item  = document.querySelector('.input-text')
 const errContainer = document.getElementById("err-container");
 
+console.log(colorArray);
+console.log(itemsArray);
 
 function display () {
     let html = '';
     for(let i = 0; i < itemsArray.length; i++){
             html += `
-            <div class="items" >
-                <div class="task">${itemsArray[i]}</div>
+            <div class="items">
+                <div class="inner-items">
+                    <i class="fa-solid fa-check check"></i>
+                    <div class="task">${itemsArray[i]}</div>
+                </div>
                 <i class="fa-solid fa-trash trash"></i>
             </div>
             `;
     }
     document.querySelector('.to-do-list').innerHTML = html;
-    deleteItem();
     completed();
+    deleteItem();
+
 }
 
 document.querySelector('.button').addEventListener('click', (e) => {
@@ -30,12 +35,15 @@ document.querySelector('.button').addEventListener('click', (e) => {
     }
 })
 
+
 function deleteItem() {
     const items = document.querySelectorAll('.trash');
     items.forEach((el, i) => {
         el.addEventListener('click', () => {
             itemsArray.splice(i, 1);
+            colorArray.splice(i, 1);
             localStorage.setItem('items', JSON.stringify(itemsArray));
+            localStorage.setItem('colors', JSON.stringify(colorArray));
             location.reload();
         })
     })
@@ -43,8 +51,9 @@ function deleteItem() {
 
 function createItem (item) {
     itemsArray.push(item);
-    completed(item);
+    colorArray.push(false);
     localStorage.setItem('items', JSON.stringify(itemsArray));
+    localStorage.setItem('colors', JSON.stringify(colorArray));
     item= "";
     location.reload();
 }
@@ -57,6 +66,7 @@ function error () {
     const error = document.createElement("div");
     error.innerHTML = `
         <div class="warning">
+            <i class="fa-solid fa-check"></i>
             <i class="fas fa-exclamation-circle"></i>
             <span>Input cannot be empty!</span>
         </div>`;
@@ -68,32 +78,30 @@ function error () {
 }
 
 function completed () {
-    const completed = document.querySelectorAll('.items');
+    const items = document.querySelectorAll('.items');
+    const completed = document.querySelectorAll('.check');
     completed.forEach( (el, i) => {
         el.addEventListener('click', () => {
-            el.classList.toggle('green');
-            updateColorArray(i);
+            items[i].classList.toggle('green');
+            if (colorArray[i] == false){
+                colorArray[i] = true;
+            } else {
+                colorArray[i] = false;
+            }
+            localStorage.setItem('colors', JSON.stringify(colorArray));
         })
     })
+    
 }
 
 function refreshColors () {
-    const completed = document.querySelectorAll('.items');
+    const items = document.querySelectorAll('.items');
+    const completed = document.querySelectorAll('.check');
     for(let i = 0; i < completed.length; i++){
-        if(colorArray[i] === 1) {
-            completed[i].classList.add('green');
-            updateColorArray(i);
+        if(colorArray[i] === true) {
+            items[i].classList.add('green');
         }
     }
-}
-
-function updateColorArray(i) {
-    if (colorPicker[i] == 0){
-        colorPicker[i] = 1;
-    } else {
-        colorPicker[i] = 0;
-    }
-    localStorage.setItem('colors', JSON.stringify(colorPicker));
 }
 
 item.focus();
